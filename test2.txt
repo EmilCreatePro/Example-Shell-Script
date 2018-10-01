@@ -1,0 +1,36 @@
+echo Script name: $0
+echo $# arguments 
+if test "$#" -le 1; then 
+   echo "Usage: $0 must be have at least 2 arguments: file n1 n2..."
+fi
+
+sum=0
+contor=0
+
+for i do
+   rest=`expr $i % 2`
+   if test "$rest" -eq 1; then
+	 sum=`expr $sum + $i`
+   else
+    if test "$rest" -eq 0; then
+         contor=`expr $contor + 1`
+   fi
+fi
+done
+
+echo "Suma numerelor impare este:"
+echo "$sum"
+echo "Numere pare gasite:"
+echo "$contor"
+echo "Numarul cifrelor sumei este: ${#sum}"
+
+cifre=`echo $sum | wc -L`
+
+echo "Numarul cifrelor sumei facut cu pipe este:$cifre"
+
+if [ -f $PASSED ]; then
+	echo "Suma numerelor impare este $sum" >> $0
+	echo "Avem $contor numere pare!" >> $0
+fi
+Suma numerelor impare este 64
+Avem 4 numere pare!
