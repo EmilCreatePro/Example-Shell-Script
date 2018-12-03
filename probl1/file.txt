@@ -1,0 +1,13 @@
+
+echo For 65 the sum of digits is 11 which has 2 digits
+echo For 22 the sum of digits is 4 which has 1 digits
+echo For 45642 the sum of digits is 21 which has 2 digits
+echo For 65756782 the sum of digits is 46 which has 2 digits
+echo For 43232 the sum of digits is 14 which has 2 digits
+echo For 656 the sum of digits is 17 which has 2 digits
+echo For 75 the sum of digits is 12 which has 2 digits
+echo For 45 the sum of digits is 9 which has 1 digits
+echo For 87 the sum of digits is 15 which has 2 digits
+echo For 543322 the sum of digits is 19 which has 2 digits
+echo For 4532 the sum of digits is 14 which has 2 digits
+echo For 93 the sum of digits is 12 which has 2 digits

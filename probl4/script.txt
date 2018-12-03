@@ -1,0 +1,50 @@
+echo $0
+echo Nr of arguments: $#
+
+if [ $# -lt 2 ]; then echo Usage: $0 file n1 n2 ...; exit 1
+fi
+
+if [ -f $1 ]; then echo $1 is a regular file!
+else echo $1 is Not the name of a regular file!; exit 2
+fi
+
+number=""
+
+while read -n 1 line
+do
+    name=$line
+    len=`echo $name | wc -L`
+    if [[ $len -ne 0 ]]; 
+        then number="$number$name"
+    fi
+
+    echo Text read from file: $name
+
+done < $1
+
+#if [[ $number -lt 0 ]]; then echo We don't have positive number!; exit 3
+#fi
+
+echo $number
+
+arg1=$1
+
+shift 1 #get rid of first argument 
+
+count=0
+sumNrDigits=0
+
+for i do
+    rest=`expr $i % $number`
+    if [[ $rest -eq 0 ]]; then echo $i; count=`expr $count + 1`
+    fi
+
+    nrDigits_i=`echo $i | wc -L`
+    sumNrDigits=`expr $sumNrDigits + $nrDigits_i`
+
+done
+
+echo $count numbers are dividable by $number
+echo The sum of all digits of numbers given as arguments is: $sumNrDigits
+
+echo DONE

@@ -1,0 +1,50 @@
+echo Script name: $0
+echo Number of arguments: $#
+
+if [ $# -lt 3 ]; then echo Usage: $0 file digit n1 n2...;  exit 1
+fi
+
+re='^[0-9]+$'
+
+if [[ $2 =~ $re ]] && [ $2 -lt 10 ]; then echo Second argument is a digit!
+    else echo Second argument is NOT a digit; exit 2
+fi
+
+arg1=$0
+arg2=$1
+arg3=$2
+
+#echo $arg1 $arg2 $arg3
+
+shift 2 #shift the argumetns 2 positions to the left so you can go through them
+
+#echo $0 $1 $2
+
+fileFlag=0
+
+if [ -f $arg2 ]; then fileFlag=1 ; echo '' > $arg2
+else echo $arg2 is not regular file!
+fi
+
+for i do
+    lastDigit=`expr $i % 10`
+    if [ $lastDigit == $arg3 ]; then echo $i
+    fi 
+done
+
+for i do
+    sum=0
+    nr=$i
+    while [ $nr -gt 0 ] 
+    do
+        lastDigit=`expr $nr % 10`
+        sum=`expr $sum + $lastDigit`
+        nr=`expr $nr / 10`
+    done
+    nrDigits=`echo $sum | wc -L`
+    echo For $i the sum of digits is $sum which has $nrDigits digits
+    if [ $fileFlag -eq 1 ]; then echo echo For $i the sum of digits is $sum which has $nrDigits digits >> $arg2
+    fi
+done
+
+echo DONE

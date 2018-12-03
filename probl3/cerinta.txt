@@ -1,0 +1,1 @@
+Se da un argument de la tastatura, file. Se citesc numere de la tastatura pana cand se da "n". Daca nu sunt destule argumente se afiseaza un mesaj de eroare. Se afiseaza imediat dupa ce se dau toate numere strict pozitive. Pt toate numere care au 3 cifre se calculeaza suma. daca file e exista si e fisier obisnuit atunci sa se scrie suma acolo 

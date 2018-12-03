@@ -1,0 +1,2 @@
+
+The sum of all numbers with 3 digits is: 1344

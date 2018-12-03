@@ -1,0 +1,42 @@
+echo $0
+echo Number of arguments: $#
+
+if [ $# -ne 1 ]; then echo Warning: Usage: $0 file; exit 1
+fi
+
+flagFile=0
+
+if [ -f $1 ]; then flagFile=1; echo '' > $1
+else echo $1 is not a regular file or it does not exist!
+fi
+
+re='^[0-9]+$'
+
+sum=0
+
+while read line
+do
+    if [ $line = n ]; then break
+    fi
+
+    if [[ $line =~ $re ]]; then
+        if [ $line -gt 0 ]; then echo $line
+        fi
+
+        #nrDigits=`echo $line | wc -L`
+        nrDigits=${#line} 
+        #-> other way to find out the number of digits
+
+        if [ $nrDigits -eq 3 ]; then echo $line has 3 digits!
+            sum=`expr $sum + $line `
+        fi
+    fi
+done
+
+echo The sum of all numbers with 3 digits is: $sum
+
+if [ $flagFile -eq 1 ]; then echo The sum of all numbers with 3 digits is: $sum >> $1
+fi
+
+
+echo DONE

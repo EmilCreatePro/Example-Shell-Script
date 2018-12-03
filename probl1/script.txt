@@ -1,0 +1,57 @@
+echo Script name: $0
+echo $# arguments 
+
+if test "$#" -lt 3; 
+	then echo "Usage: $0 file digit n1 n2...";
+	exit 1
+fi
+
+re='^[0-9]+$'
+
+if ! [[ $2 =~ $re ]] ; then
+   echo "error: Third argument must be a digit!" >&2; exit 2
+	elif test "$2" -ge 10;
+		then echo "Warning! Third argument must be a digit!"; exit 3
+			elif test "$2" -lt 0; then echo "Warning! Third argument must be a positive digit!"; exit 4
+fi
+
+for i do
+	if [[ $i =~ $re ]] ; then
+   		rest=`expr $i % 10`
+   			if test "$rest" -eq $2; then
+				echo $i
+   			fi
+	fi
+done
+
+fileExistsFlag=0
+
+if [ -f $1 ]; then fileExistsFlag=1
+fi
+
+if [ $fileExistsFlag == 1 ] ; then echo $1 exists and is a regular File!; echo '' > $1
+else echo $1 does NOT exist and is NOT a regular File!
+fi
+
+
+for i do
+	if [[ $i =~ $re ]] ; then
+   		nr=$i
+		sum=0
+		   while [ $nr -gt 0 ]
+		   do
+		   	cif=`expr $nr % 10`
+   			sum=`expr $sum + $cif`
+			nr=`expr $nr / 10`
+   		done
+		nrCif=`echo $sum | wc -L`
+		echo sum for $i = $sum with $nrCif digits
+		if [ $fileExistsFlag == 1 ];
+			then echo sum for $i = $sum with $nrCif digits >> $1
+		fi
+	fi
+done
+
+
+
+echo "Done return 0"
